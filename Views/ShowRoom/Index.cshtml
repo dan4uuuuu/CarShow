@@ -11,7 +11,7 @@
 <script src="~/Scripts/jquery-3.3.1.min.js"></script>
 <h2>Showroom</h2>
 
-<table class="table">
+<table class="table" >
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Manufacturer)
@@ -23,7 +23,7 @@
 
     @foreach (var item in Model)
     {
-        <tr class="showroomItem" onclick="ShowItemDetails(@item.Id)">
+        <tr class="showroomItem" onclick="ShowItemDetails(@item.Id)" title="Click for more details.">
             <td>
                 @Html.DisplayFor(modelItem => item.Manufacturer)
             </td>
@@ -38,10 +38,9 @@
 
 <script>
     function ShowItemDetails(item) {
-        //
-
         $.ajax({
-            url: "ShowRoom/LoadCarDetails/"+item,
+            url: '@Url.Action("LoadCarDetails","ShowRoom")',
+            data: {id: item},
             context: document.body
         }).done(function (data) {
 
