@@ -1,11 +1,6 @@
-﻿using CarShow.DataAaccessLayer;
-using CarShow.DataAaccessLayer.Context;
-using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
+using CarShow.DataAaccessLayer.Interface;
+using CarShow.DataAaccessLayer.Repository;
 
 namespace CarShow.Controllers
 {
@@ -13,9 +8,6 @@ namespace CarShow.Controllers
     {
         public ActionResult Index()
         {
-            var db = new CarShowDBContext();
-            var cars = db.Cars.ToList();
-
             return View();
         }
 

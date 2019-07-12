@@ -1,0 +1,53 @@
+﻿@model IEnumerable<CarShow.ViewModels.CarViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+<style>
+    .modal {
+        display: none;
+    }
+</style>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<h2>Showroom</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Manufacturer)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Model)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr class="showroomItem" onclick="ShowItemDetails(@item.Id)">
+            <td>
+                @Html.DisplayFor(modelItem => item.Manufacturer)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Model)
+            </td>
+        </tr>
+    }
+<div class="modal" tabindex="-1" role="dialog">&nbsp;</div>
+</table>
+
+
+<script>
+    function ShowItemDetails(item) {
+        //
+
+        $.ajax({
+            url: "ShowRoom/LoadCarDetails/"+item,
+            context: document.body
+        }).done(function (data) {
+
+             $(".modal").html(data);
+
+             $(".modal").modal('show');
+        });
+    }
+</script>
